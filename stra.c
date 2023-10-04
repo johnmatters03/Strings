@@ -48,3 +48,18 @@ int Str_compare(const char s1[], const char s2[]) {
   return 0;
 }
 
+char* Str_search(const char haystack[], const char needle[]) {
+  int index;
+  int cNeedle;
+  index = 0;
+  while (haystack[index] != '\0') {
+    cNeedle = 0;
+    while (needle[cNeedle] != '\0' && haystack[cNeedle + index] != '\0') {
+      if (needle[cNeedle] != haystack[cNeedle + index]) break;
+      cNeedle++;
+      if (cNeedle == '\0') return index;
+    }
+    index++;
+  }
+  return '\0';
+}
