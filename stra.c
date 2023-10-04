@@ -1,6 +1,4 @@
 #include "str.h"
-#include <stdio.h>
-#include <string.h>
 
 size_t Str_getLength(const char pcSrc[])
   {
