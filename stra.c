@@ -1,4 +1,6 @@
 #include "str.h"
+#include <stdio.h>
+#include <string.h>
 
 size_t Str_getLength(const char pcSrc[])
   {
@@ -10,16 +12,21 @@ size_t Str_getLength(const char pcSrc[])
 
 char* Str_copy(char pcDest[], const char pcSrc[])
   {
+    assert(pcDest != NULL);
+    assert(pcSrc != NULL);
     int counter;
     counter = 0;
     while (pcSrc[counter] != '\0') {
       pcDest[counter] = pcSrc[counter];
       counter++;
     }
+    pcDest[counter] = '\0';
     return pcDest;
   }
 
 char* Str_concat(char dest[], const char src[]) {
+    assert(dest != NULL);
+    assert(src != NULL);
     int cDest;
     int cSrc;
     cDest = 0;
@@ -33,22 +40,28 @@ char* Str_concat(char dest[], const char src[]) {
       cDest++;
       cSrc++;
     }
-
+    dest[cDest] = '\0';
     return dest;
   }
 
 int Str_compare(const char s1[], const char s2[]) {
+  assert(s1 != NULL);
+  assert(s2 != NULL);
   int counter;
   counter = 0;
 
-  while (s1[counter] != '\0' && s2[counter] != '\0') {
+  while (s1[counter] != '\0' || s2[counter] != '\0') {
     if (s1[counter] > s2[counter]) return 1;
     if (s1[counter] < s2[counter]) return -1;
+    counter++;
   }
   return 0;
 }
 
 char* Str_search(const char haystack[], const char needle[]) {
+  assert(haystack != NULL);
+  assert(needle != NULL);
+  if (needle[0] == '\0') return (char*) &haystack[0];
   int index;
   int cNeedle;
   index = 0;
@@ -57,9 +70,9 @@ char* Str_search(const char haystack[], const char needle[]) {
     while (needle[cNeedle] != '\0' && haystack[cNeedle + index] != '\0') {
       if (needle[cNeedle] != haystack[cNeedle + index]) break;
       cNeedle++;
-      if (cNeedle == '\0') return index;
     }
+    if (needle[cNeedle] == '\0') return (char*) &haystack[index];
     index++;
   }
-  return '\0';
+  return NULL;
 }
