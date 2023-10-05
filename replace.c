@@ -22,7 +22,11 @@ static size_t replaceAndWrite(const char *pcLine,
 {
    char *target;
    char *iter;
-   int count;
+   size_t count;
+
+   assert(pcLine != NULL);
+   assert(pcFrom != NULL);
+   assert(pcTo != NULL);
 
    if (*pcFrom == '\0') {
       printf(pcLine);
