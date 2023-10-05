@@ -27,22 +27,25 @@ static size_t replaceAndWrite(const char *pcLine,
 
    char *target;
    char *modify;
+   char *iter;
    int count;
+   iter = pcLine;
    count = 0;
 
-   while (Str_search(pcLine, pcFrom) != NULL) {
-      target = Str_search(pcLine, pcFrom);
-      modify = pcTo;
-      count++;
-
-      while(*modify != '\0') {
-         *target = *modify;
-         target++;
-         modify++;
+   while (Str_search(iter, pcFrom) != NULL) {
+      target = Str_search(iter, pcFrom);
+      while (iter != target) {
+         putchar(*iter);
+         iter++;
       }
+      printf(pcTo);
+      iter += Str_getLength(pcFrom);
+      count++;
    }
-
-   printf(pcLine);
+   while (*iter != '\0') {
+      putchar(*iter);
+      iter++;
+   }
    return count;
 }
 
