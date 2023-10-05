@@ -20,16 +20,16 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
+   char *target;
+   char *iter;
+   int count;
+
    if (*pcFrom == '\0') {
       printf(pcLine);
       return 0;
    }
 
-   char *target;
-   char *modify;
-   char *iter;
-   int count;
-   iter = pcLine;
+   iter = (char*)pcLine;
    count = 0;
 
    while (Str_search(iter, pcFrom) != NULL) {

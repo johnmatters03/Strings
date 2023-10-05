@@ -51,17 +51,17 @@ char* Str_search(const char * haystack, const char * needle) {
     char *hay_iter;
     char *needle_iter;
 
-    if (*needle == '\0') return haystack;
+    if (*needle == '\0') return (char*)haystack;
 
     while (*haystack != '\0') {
-        hay_iter = haystack;
-        needle_iter = needle;
+        hay_iter = (char*)haystack;
+        needle_iter = (char*)needle;
         while(*needle_iter != '\0' && *hay_iter != '\0') {
             if (*needle_iter != *hay_iter) break;
             needle_iter++;
             hay_iter++;
         }
-        if (*needle_iter == '\0') return haystack;
+        if (*needle_iter == '\0') return (char*)haystack;
         haystack++;
     }
 

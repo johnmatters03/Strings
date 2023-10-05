@@ -1,3 +1,8 @@
+/*--------------------------------------------------------------------*/
+/* stra.c                                                             */
+/* Author: John Matters                                               */
+/*--------------------------------------------------------------------*/
+
 #include "str.h"
 
 size_t Str_getLength(const char pcSrc[])
@@ -22,24 +27,24 @@ char* Str_copy(char pcDest[], const char pcSrc[])
     return pcDest;
   }
 
-char* Str_concat(char dest[], const char src[]) {
-    assert(dest != NULL);
-    assert(src != NULL);
+char* Str_concat(char pcDest[], const char pcSrc[]) {
+    assert(pcDest != NULL);
+    assert(pcSrc != NULL);
     int cDest;
     int cSrc;
     cDest = 0;
     cSrc = 0;
 
-    while (dest[cDest] != '\0') {
+    while (pcDest[cDest] != '\0') {
       cDest++;
     }
-    while (src[cSrc] != '\0') {
-      dest[cDest] = src[cSrc];
+    while (pcSrc[cSrc] != '\0') {
+      pcDest[cDest] = pcSrc[cSrc];
       cDest++;
       cSrc++;
     }
-    dest[cDest] = '\0';
-    return dest;
+    pcDest[cDest] = '\0';
+    return pcDest;
   }
 
 int Str_compare(const char s1[], const char s2[]) {
